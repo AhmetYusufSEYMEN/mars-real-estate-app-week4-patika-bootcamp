@@ -1,0 +1,74 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="itemMars"
+            type="com.seymen.retrofitandrecyclerview.data.model.MarsModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        app:cardCornerRadius="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/nice_blue"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/imgvRecyclerview"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_80sdp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                imageUrl="@{itemMars.img_src}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txvType"
+                android:layout_marginStart="16dp"
+                tools:text="TYPE"
+                android:text="@{` For ` + itemMars.type}"
+
+
+                app:drawableStartCompat="@drawable/for_what"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imgvRecyclerview"
+                app:layout_constraintTop_toTopOf="parent"
+                style="@style/txvListStyle" />
+
+            <TextView
+                android:id="@+id/txvId"
+                style="@style/txvListStyle"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="20dp"
+                android:text="@{itemMars.id}"
+                app:drawableStartCompat="@drawable/location"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/imgvRecyclerview"
+                tools:text="ID" />
+
+            <TextView
+                android:id="@+id/txvPrice"
+                style="@style/txvListStyle"
+                android:layout_marginBottom="15dp"
+                tools:text="PRICE"
+                android:text="@{itemMars.price}"
+                app:drawableStartCompat="@drawable/price_tag"
+                app:layout_constraintBottom_toBottomOf="@+id/imgvRecyclerview"
+                app:layout_constraintStart_toStartOf="@+id/txvId" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+<!--  android:text="@{itemMars.price}"-->
+    </androidx.cardview.widget.CardView>
+</layout>
