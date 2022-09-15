@@ -1,10 +1,12 @@
 <resources>
     <string name="app_name">RetrofitAndRecyclerview</string>
-    <string name="mars_estate">MARS ESTATE</string>
+    <string name="mars_estate">MARS REAL ESTATE</string>
     <string name="hello_blank_fragment">hello</string>
 
     <string name="txt_custom_string"><font color='#ffffff'><br>Let’s Explore the</br></font> <font color='#F9AD1A'>Solar System\t</font> <font color='#ffffff'>with</font> <font color='#F9AD1A'>Explorer</font>
     </string>
 
     <string name="get_started">Get Started</string>
+    <string name="buy_now">Buy Now</string>
+    <string name="buy_now_be_a_martian">BUY NOW, BE A MARTIAN</string>
 </resources>

@@ -9,7 +9,8 @@
     </data>
 
     <androidx.cardview.widget.CardView
-        app:cardCornerRadius="10dp"
+        android:id="@+id/cwRecyclerView"
+        app:cardCornerRadius="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@color/nice_blue"
@@ -36,7 +37,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/txvType"
+                android:id="@+id/txvTypeDetail"
                 android:layout_marginStart="16dp"
                 tools:text="TYPE"
                 android:text="@{` For ` + itemMars.type}"
@@ -49,7 +50,7 @@
                 style="@style/txvListStyle" />
 
             <TextView
-                android:id="@+id/txvId"
+                android:id="@+id/txvIdDetail"
                 style="@style/txvListStyle"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="20dp"
@@ -60,14 +61,14 @@
                 tools:text="ID" />
 
             <TextView
-                android:id="@+id/txvPrice"
+                android:id="@+id/txvPriceDetail"
                 style="@style/txvListStyle"
                 android:layout_marginBottom="15dp"
                 tools:text="PRICE"
                 android:text="@{itemMars.price}"
                 app:drawableStartCompat="@drawable/price_tag"
                 app:layout_constraintBottom_toBottomOf="@+id/imgvRecyclerview"
-                app:layout_constraintStart_toStartOf="@+id/txvId" />
+                app:layout_constraintStart_toStartOf="@+id/txvIdDetail" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 <!--  android:text="@{itemMars.price}"-->
     </androidx.cardview.widget.CardView>

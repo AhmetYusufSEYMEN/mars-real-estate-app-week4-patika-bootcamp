@@ -2,9 +2,12 @@ package com.seymen.retrofitandrecyclerview.ui.main.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
+import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.seymen.retrofitandrecyclerview.data.model.MarsModel
 import com.seymen.retrofitandrecyclerview.databinding.RecyclerItemBinding
+import com.seymen.retrofitandrecyclerview.ui.main.view.MarsListFragmentDirections
 
 class MainAdapter(private val marsInfo: ArrayList<MarsModel>) : RecyclerView.Adapter<MainAdapter.DataViewHolder>() {
 
@@ -21,6 +24,14 @@ class MainAdapter(private val marsInfo: ArrayList<MarsModel>) : RecyclerView.Ada
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
         holder.binding.itemMars = marsInfo[position]
         holder.binding.executePendingBindings()
+
+        with(marsInfo[position]){
+            holder.binding.cwRecyclerView.setOnClickListener {
+                val mars = MarsModel(id,img_src,price,type)
+                val action = MarsListFragmentDirections.actionMarsListFragment2ToMarsDetailsFragment(mars)
+                findNavController(it).navigate(action)
+            }
+        }
     }
 
     fun addInfo(marsInfo: List<MarsModel>) {

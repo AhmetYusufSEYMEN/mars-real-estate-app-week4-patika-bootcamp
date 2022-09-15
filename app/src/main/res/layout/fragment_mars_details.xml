@@ -1,21 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+    <variable
+        name="marsDetailBinding"
+        type="com.seymen.retrofitandrecyclerview.data.model.MarsModel" />
     </data>
 
-    <FrameLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.main.view.MarsDetailsFragment">
 
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imgvMarsDetail"
+            imageUrl="@{marsDetailBinding.img_src}"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_200sdp"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/ImageView.Corner"
+            tools:layout_editor_absoluteX="0dp"
+            tools:srcCompat="@drawable/mars_tools_exmple" />
+
+        <View
+            android:id="@+id/divider3"
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="2dp"
+            android:background="@color/orange"
+            app:layout_constraintBottom_toTopOf="@+id/cardView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgvMarsDetail" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_60sdp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="20dp"
+            app:cardBackgroundColor="@color/nice_blue"
+            app:cardCornerRadius="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgvMarsDetail">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/Guideline1"
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/Guideline2"
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.33" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/Guideline3"
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.66" />
+
+                <TextView
+                    android:id="@+id/txvTypeDetail"
+                    style="@style/txvListStyle"
+                    android:text="@{` Type ` + `\n` + ` For `+ marsDetailBinding.type}"
+                    app:drawableStartCompat="@drawable/for_what"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/Guideline2"
+                    app:layout_constraintStart_toStartOf="@id/Guideline1"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="TYPE" />
+
+                <View
+                    android:id="@+id/divider"
+                    style="@style/dividerStyle"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/Guideline2"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txvIdDetail"
+                    style="@style/txvListStyle"
+                    android:text="@{` ID ` + `\n` + marsDetailBinding.id}"
+                    app:drawableStartCompat="@drawable/location"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/Guideline3"
+                    app:layout_constraintStart_toStartOf="@id/Guideline2"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="ID" />
+
+                <View
+                    android:id="@+id/divider2"
+                    style="@style/dividerStyle"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/Guideline3" />
+
+                <TextView
+                    android:id="@+id/txvPriceDetail"
+                    style="@style/txvListStyle"
+                    android:text="@{` Price ` + `\n` + marsDetailBinding.price}"
+                    app:drawableStartCompat="@drawable/price_tag"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/Guideline3"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="PRICE" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:background="@null"
+            android:src="@drawable/back_arrow"
+            android:scaleType="fitXY"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:layout_marginStart="@dimen/_6sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/buy_now_be_a_martian"
+            android:layout_marginBottom="@dimen/_4sdp"
+            android:textSize="@dimen/_16ssp"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/divider4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+        <View
+            android:id="@+id/divider4"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment" />
+            android:layout_height="@dimen/_80sdp"
+            android:background="@color/orange"
+            android:layout_marginBottom="@dimen/_40sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+           />
 
-    </FrameLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnGetStarted"
+            style="@style/btnStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:drawableLeft="@drawable/cart"
+            android:text="@string/buy_now"
+            android:fontFamily="@font/nunito_extrabold"
+            app:layout_constraintBottom_toBottomOf="@+id/divider4"
+            app:layout_constraintEnd_toEndOf="@+id/divider4"
+            app:layout_constraintStart_toStartOf="@+id/divider4"
+            app:layout_constraintTop_toTopOf="@+id/divider4" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

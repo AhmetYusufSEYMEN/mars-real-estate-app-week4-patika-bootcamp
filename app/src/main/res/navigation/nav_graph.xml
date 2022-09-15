@@ -26,7 +26,8 @@
     <fragment
         android:id="@+id/marsListFragment"
         android:name="com.seymen.retrofitandrecyclerview.ui.main.view.MarsListFragment"
-        android:label="MarsListFragment" >
+        android:label="MarsListFragment"
+        tools:layout="@layout/fragment_mars_list">
         <action
             android:id="@+id/action_marsListFragment2_to_marsDetailsFragment"
             app:destination="@id/marsDetailsFragment" />
@@ -34,11 +35,17 @@
     <fragment
         android:id="@+id/marsDetailsFragment"
         android:name="com.seymen.retrofitandrecyclerview.ui.main.view.MarsDetailsFragment"
-        android:label="MarsDetailsFragment" />
+        android:label="MarsDetailsFragment"
+        tools:layout="@layout/fragment_mars_details">
+        <argument
+            android:name="marsArgs"
+            app:argType="com.seymen.retrofitandrecyclerview.data.model.MarsModel" />
+    </fragment>
     <fragment
         android:id="@+id/onBoardingFragment"
         android:name="com.seymen.retrofitandrecyclerview.ui.main.view.OnBoardingFragment"
-        android:label="OnBoardingFragment" >
+        android:label="OnBoardingFragment"
+        tools:layout="@layout/fragment_on_boarding">
         <action
             android:id="@+id/action_onBoardingFragment_to_marsListFragment"
             app:destination="@id/marsListFragment"
