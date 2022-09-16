@@ -6,7 +6,6 @@ import com.seymen.retrofitandrecyclerview.data.repository.MainRepository
 import com.seymen.retrofitandrecyclerview.utils.Resource
 import kotlinx.coroutines.Dispatchers
 
-
 class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
 
     fun getMarsInfo() = liveData(Dispatchers.IO) {

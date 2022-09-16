@@ -2,13 +2,12 @@ package com.seymen.retrofitandrecyclerview.ui.main.view
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.os.Build
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.WindowManager
 import android.view.animation.AnimationUtils
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.seymen.retrofitandrecyclerview.R
@@ -27,13 +26,11 @@ class SplashFragment : Fragment() {
         super.onCreate(savedInstanceState)
         shared = requireContext().getSharedPreferences("com.seymen.retrofitandrecyclerview" , Context.MODE_PRIVATE)
         lifecycleScope.launch {
-            delay(1000) // TODO: Finalde 2000 yapılacak
-            val check = shared.getString(ONBOARDING_SP_KEY , "0" )
-            if(check == "0"){
-                findNavController().navigate(R.id.action_splashFragment_to_onBoardingFragment)
-            }
-            else {
-                findNavController().navigate(R.id.action_splashFragment_to_marsListFragment)
+            delay(2000)
+
+            when(shared.getString(ONBOARDING_SP_KEY , "0" )){
+                "0" ->  findNavController().navigate(R.id.action_splashFragment_to_onBoardingFragment)
+                else ->  findNavController().navigate(R.id.action_splashFragment_to_marsListFragment)
             }
         }
     }
@@ -50,8 +47,17 @@ class SplashFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // make full screen
-        requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+
+        hideBar()
+    }
+
+    private fun hideBar() {
+        if (Build.VERSION.SDK_INT < 30) {
+            requireActivity().window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
+            requireActivity().actionBar?.hide()
+        } else {
+            requireActivity().window.decorView.windowInsetsController?.hide(WindowInsets.Type.statusBars())
+        }
     }
 
     override fun onDestroy() {
