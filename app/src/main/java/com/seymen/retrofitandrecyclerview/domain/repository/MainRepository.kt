@@ -1,6 +1,6 @@
-package com.seymen.retrofitandrecyclerview.data.repository
+package com.seymen.retrofitandrecyclerview.domain.repository
 
-import com.seymen.retrofitandrecyclerview.data.api.ApiHelper
+import com.seymen.retrofitandrecyclerview.data.remote.ApiHelper
 
 class MainRepository(private val apiHelper: ApiHelper) {
 

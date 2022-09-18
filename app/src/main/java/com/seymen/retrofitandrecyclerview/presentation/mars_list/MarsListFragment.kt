@@ -1,4 +1,4 @@
-package com.seymen.retrofitandrecyclerview.ui.main.view
+package com.seymen.retrofitandrecyclerview.presentation.mars_list
 
 import android.os.Build
 import android.os.Bundle
@@ -10,21 +10,21 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.seymen.retrofitandrecyclerview.data.api.ApiHelper
-import com.seymen.retrofitandrecyclerview.data.api.MarsApi
-import com.seymen.retrofitandrecyclerview.data.model.MarsModel
+import com.seymen.retrofitandrecyclerview.data.remote.ApiHelper
+import com.seymen.retrofitandrecyclerview.data.remote.MarsApi
+import com.seymen.retrofitandrecyclerview.domain.model.MarsModel
 import com.seymen.retrofitandrecyclerview.databinding.FragmentMarsListBinding
-import com.seymen.retrofitandrecyclerview.ui.base.ViewModelFactory
-import com.seymen.retrofitandrecyclerview.ui.main.adapter.MainAdapter
-import com.seymen.retrofitandrecyclerview.ui.main.viewmodel.MainViewModel
+import com.seymen.retrofitandrecyclerview.presentation.mars_list.adapter.MarsListRecyclerViewAdapter
+import com.seymen.retrofitandrecyclerview.presentation.mars_list.viewmodel.MarsListViewModel
+import com.seymen.retrofitandrecyclerview.presentation.mars_list.viewmodel.ViewModelFactory
 import com.seymen.retrofitandrecyclerview.utils.Status
 
 class MarsListFragment : Fragment() {
 
     private var _binding : FragmentMarsListBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: MainViewModel
-    private lateinit var adapter: MainAdapter
+    private lateinit var viewModel: MarsListViewModel
+    private lateinit var adapter: MarsListRecyclerViewAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,7 +40,23 @@ class MarsListFragment : Fragment() {
         setupViewModel()
         setupUI()
         setupObservers()
+        swipeRefreshListener()
     }
+
+    /**
+     * Swipe refresh layout listener
+     *
+     */
+    private fun swipeRefreshListener() {
+        binding.apply {
+            swipeRefresh.setOnRefreshListener {
+                setupObservers()
+                recyclerMars.adapter!!.notifyDataSetChanged()
+                swipeRefresh.isRefreshing = false
+            }
+        }
+    }
+
     override fun onResume() {
         super.onResume()
         showBar()
@@ -60,7 +76,7 @@ class MarsListFragment : Fragment() {
     }
 
     private fun setupViewModel() {
-        viewModel = ViewModelProvider(this, ViewModelFactory(ApiHelper(MarsApi.apiService)))[MainViewModel::class.java]
+        viewModel = ViewModelProvider(this, ViewModelFactory(ApiHelper(MarsApi.apiService)))[MarsListViewModel::class.java]
     }
 
     private fun setupUI() {
@@ -68,7 +84,7 @@ class MarsListFragment : Fragment() {
          * recycler adapter setted
          */
         binding.recyclerMars.layoutManager = LinearLayoutManager(requireContext())
-        adapter = MainAdapter(arrayListOf()){ item ->
+        adapter = MarsListRecyclerViewAdapter(arrayListOf()){ item ->
             val mars = MarsModel(item.id,item.img_src,item.price,item.type)
            // Toast.makeText(requireContext(), item.id, Toast.LENGTH_SHORT).show()
             val action = MarsListFragmentDirections.actionMarsListFragment2ToMarsDetailsFragment(mars)

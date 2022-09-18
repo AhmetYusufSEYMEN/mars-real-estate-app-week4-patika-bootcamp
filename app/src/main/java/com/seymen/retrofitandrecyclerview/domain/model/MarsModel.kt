@@ -1,4 +1,4 @@
-package com.seymen.retrofitandrecyclerview.data.model
+package com.seymen.retrofitandrecyclerview.domain.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

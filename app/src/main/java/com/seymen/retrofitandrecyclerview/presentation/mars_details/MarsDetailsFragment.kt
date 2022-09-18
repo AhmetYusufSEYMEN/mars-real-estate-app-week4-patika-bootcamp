@@ -1,4 +1,4 @@
-package com.seymen.retrofitandrecyclerview.ui.main.view
+package com.seymen.retrofitandrecyclerview.presentation.mars_details
 
 import android.os.Build
 import android.os.Bundle
@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.seymen.retrofitandrecyclerview.databinding.FragmentMarsDetailsBinding
-
 
 class MarsDetailsFragment : Fragment() {
 
@@ -34,6 +33,10 @@ class MarsDetailsFragment : Fragment() {
         hideBar()
     }
 
+    /**
+     * Notification bar hided
+     *
+     */
     private fun hideBar() {
         if (Build.VERSION.SDK_INT < 30) {
             requireActivity().window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
@@ -55,8 +58,7 @@ class MarsDetailsFragment : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
-        } 
-        
+        }
     }
 
     override fun onDestroy() {

@@ -1,4 +1,4 @@
-package com.seymen.retrofitandrecyclerview.data.api
+package com.seymen.retrofitandrecyclerview.data.remote
 
 class ApiHelper(private val apiService: ApiService) {
 

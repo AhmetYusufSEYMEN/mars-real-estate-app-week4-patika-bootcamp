@@ -1,11 +1,10 @@
-package com.seymen.retrofitandrecyclerview.ui.main.view
+package com.seymen.retrofitandrecyclerview.presentation.onboard
 
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.seymen.retrofitandrecyclerview.R
@@ -31,6 +30,11 @@ class OnBoardingFragment : Fragment() {
         initListeners()
         showBar()
     }
+
+    /**
+     * Notification bar hidden on splash screen made visible
+     *
+     */
     private fun showBar() {
         if (Build.VERSION.SDK_INT < 30) {
             requireActivity().window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
@@ -41,7 +45,6 @@ class OnBoardingFragment : Fragment() {
     }
 
     private fun initListeners() {
-        // TODO: interface click listener denenecek
 
         binding.btnGetStarted.setOnClickListener {
 

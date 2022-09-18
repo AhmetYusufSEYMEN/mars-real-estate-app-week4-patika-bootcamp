@@ -6,13 +6,13 @@
     <data>
     <variable
         name="marsDetailBinding"
-        type="com.seymen.retrofitandrecyclerview.data.model.MarsModel" />
+        type="com.seymen.retrofitandrecyclerview.domain.model.MarsModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.main.view.MarsDetailsFragment">
+        tools:context=".presentation.mars_details.MarsDetailsFragment">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imgvMarsDetail"
@@ -22,7 +22,6 @@
             android:scaleType="centerCrop"
             app:layout_constraintTop_toTopOf="parent"
             app:shapeAppearanceOverlay="@style/ImageView.Corner"
-            tools:layout_editor_absoluteX="0dp"
             tools:srcCompat="@drawable/mars_tools_exmple" />
 
         <View

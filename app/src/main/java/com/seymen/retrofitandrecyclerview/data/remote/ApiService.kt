@@ -1,6 +1,6 @@
-package com.seymen.retrofitandrecyclerview.data.api
+package com.seymen.retrofitandrecyclerview.data.remote
 
-import com.seymen.retrofitandrecyclerview.data.model.MarsModel
+import com.seymen.retrofitandrecyclerview.domain.model.MarsModel
 import retrofit2.http.GET
 
 interface ApiService {

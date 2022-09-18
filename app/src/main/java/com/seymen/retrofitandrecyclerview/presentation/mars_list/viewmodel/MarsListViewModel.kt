@@ -1,13 +1,15 @@
-package com.seymen.retrofitandrecyclerview.ui.main.viewmodel
+package com.seymen.retrofitandrecyclerview.presentation.mars_list.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import com.seymen.retrofitandrecyclerview.data.repository.MainRepository
+import com.seymen.retrofitandrecyclerview.domain.repository.MainRepository
 import com.seymen.retrofitandrecyclerview.utils.Resource
 import kotlinx.coroutines.Dispatchers
 
-class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
-
+class MarsListViewModel(private val mainRepository: MainRepository) : ViewModel() {
+    /**
+     * Data is extracted from repository and processed with IO thread. Error message shown if error is received
+     */
     fun getMarsInfo() = liveData(Dispatchers.IO) {
         emit(Resource.loading(data = null))
         try {

@@ -1,13 +1,15 @@
-package com.seymen.retrofitandrecyclerview.ui.main.view
+package com.seymen.retrofitandrecyclerview.presentation.splash
 
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
-import android.view.*
-import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.WindowInsets
 import android.view.animation.AnimationUtils
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.seymen.retrofitandrecyclerview.R
@@ -18,19 +20,22 @@ import kotlinx.coroutines.launch
 
 class SplashFragment : Fragment() {
 
-    private var _binding : FragmentSplashBinding? = null
+    private var _binding: FragmentSplashBinding? = null
     private val binding get() = _binding!!
-    private  lateinit var shared : SharedPreferences
+    private lateinit var shared: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        shared = requireContext().getSharedPreferences("com.seymen.retrofitandrecyclerview" , Context.MODE_PRIVATE)
+        shared = requireContext().getSharedPreferences(
+            "com.seymen.retrofitandrecyclerview",
+            Context.MODE_PRIVATE
+        )
         lifecycleScope.launch {
             delay(2000)
 
-            when(shared.getString(ONBOARDING_SP_KEY , "0" )){
-                "0" ->  findNavController().navigate(R.id.action_splashFragment_to_onBoardingFragment)
-                else ->  findNavController().navigate(R.id.action_splashFragment_to_marsListFragment)
+            when (shared.getString(ONBOARDING_SP_KEY, "0")) {
+                "0" -> findNavController().navigate(R.id.action_splashFragment_to_onBoardingFragment)
+                else -> findNavController().navigate(R.id.action_splashFragment_to_marsListFragment)
             }
         }
     }
@@ -39,8 +44,8 @@ class SplashFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-      _binding = FragmentSplashBinding.inflate(inflater,container,false)
-        val slideAnimation = AnimationUtils.loadAnimation(requireContext(),R.anim.side_slide)
+        _binding = FragmentSplashBinding.inflate(inflater, container, false)
+        val slideAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.side_slide)
         binding.imgvMars.startAnimation(slideAnimation)
         return binding.root
     }
